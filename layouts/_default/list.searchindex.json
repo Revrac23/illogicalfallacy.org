@@ -1,0 +1,12 @@
+[
+  {{ range $index, $page := where .Site.RegularPages "Section" "fallacies" }}
+    {{ if $index }},{{ end }}
+    {
+      "title": {{ $page.Title | jsonify }},
+      "description": {{ $page.Description | jsonify }},
+      "url": {{ $page.RelPermalink | jsonify }},
+      "categories": {{ $page.Params.categories | jsonify }},
+      "content": {{ $page.Plain | jsonify }}
+    }
+  {{ end }}
+]

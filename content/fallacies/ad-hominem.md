@@ -1,13 +1,18 @@
 ---
 title: "Ad Hominem"
 description: "Attacking the person making an argument instead of addressing the argument itself."
+
 categories:
   - "Relevance"
-tags:
-  - "personal attack"
-  - "argument"
-aliases:
-  - "/fallacies/personal-attack/"
+
+alsoKnownAs:
+  - "Personal Attack"
+
+related:
+  - "poisoning-the-well"
+  - "tu-quoque"
+
+formal: false
 ---
 
 ## Definition
@@ -29,3 +34,8 @@ Ask yourself:
 > "Is this response addressing the argument, or attacking the person making it?"
 
 If the response attacks the person instead of addressing the substance of their argument, it may be an ad hominem fallacy.
+
+## Related Concepts
+
+Ad hominem arguments can take several forms, including attacks on someone's character, circumstances, motives, or hypocrisy rather than the substance of their argument.
+

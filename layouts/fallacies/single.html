@@ -3,7 +3,10 @@
   <div class="container">
 
     <header class="fallacy-header">
-      <a class="back-link" href="/fallacies/">← All Fallacies</a>
+
+      <a class="back-link" href="/fallacies/">
+        ← All Fallacies
+      </a>
 
       <h1>{{ .Title }}</h1>
 
@@ -11,32 +14,63 @@
         <p class="fallacy-description">{{ . }}</p>
       {{ end }}
 
-      {{ with .Params.categories }}
-        <div class="categories">
-          {{ range . }}
-            <span class="category">{{ . }}</span>
+      <div class="fallacy-meta">
+
+        {{ with .Params.categories }}
+          <div>
+            <strong>Category:</strong>
+
+            {{ range . }}
+              <a href="{{ "/categories/" | relURL }}{{ . | urlize }}/">
+                {{ . }}
+              </a>
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{ with .Params.alsoKnownAs }}
+          <div>
+            <strong>Also known as:</strong>
+            {{ delimit . ", " }}
+          </div>
+        {{ end }}
+
+        <div>
+          <strong>Type:</strong>
+          {{ if .Params.formal }}
+            Formal fallacy
+          {{ else }}
+            Informal fallacy
           {{ end }}
         </div>
-      {{ end }}
+
+      </div>
+
     </header>
 
     <article class="fallacy-content">
       {{ .Content }}
     </article>
 
-    {{ with .Params.related }}
-      <section class="related-fallacies">
-        <h2>Related Fallacies</h2>
+      {{ with .Params.related }}
+       <section class="related-fallacies">
+         <h2>Related Fallacies</h2>
 
-        <ul>
-          {{ range . }}
-            <li>
-              <a href="/fallacies/{{ . | urlize }}/">{{ . }}</a>
-            </li>
-          {{ end }}
-        </ul>
-      </section>
-    {{ end }}
+         <ul>
+           {{ range . }}
+             {{ $related := site.GetPage (printf "/fallacies/%s" .) }}
+
+             {{ with $related }}
+               <li>
+                 <a href="{{ .RelPermalink }}">
+                   {{ .Title }}
+                 </a>
+               </li>
+             {{ end }}
+           {{ end }}
+         </ul>
+       </section>
+     {{ end }}
 
   </div>
 </main>

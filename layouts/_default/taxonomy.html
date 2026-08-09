@@ -1,0 +1,30 @@
+{{ define "main" }}
+<main class="fallacy-index">
+  <div class="container">
+
+    <header class="page-header">
+      <p class="eyebrow">Category</p>
+      <h1>{{ .Title }}</h1>
+
+      <p>
+        Fallacies in the {{ .Title }} category.
+      </p>
+    </header>
+
+    <div class="fallacy-grid">
+      {{ range .Pages.ByTitle }}
+        <article class="fallacy-card">
+          <h2>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+
+          {{ with .Description }}
+            <p>{{ . }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+
+  </div>
+</main>
+{{ end }}

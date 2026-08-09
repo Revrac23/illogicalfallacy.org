@@ -10,3 +10,15 @@ enableRobotsTXT = true
 [taxonomies]
   category = 'categories'
   tag = 'tags'
+
+[outputFormats.SearchIndex]
+mediaType = "application/json"
+baseName = "index"
+isPlainText = true
+notAlternative = true
+
+[outputs]
+home = ["HTML"]
+section = ["HTML", "SearchIndex"]
+taxonomy = ["HTML"]
+term = ["HTML"]

@@ -1,0 +1,53 @@
+{{ define "main" }}
+<main class="fallacy-index">
+  <div class="container">
+
+    <header class="page-header">
+      <p class="eyebrow">Reference Library</p>
+      <h1>Logical Fallacies</h1>
+      <p>
+        Explore common errors in reasoning, argumentation, and persuasion.
+      </p>
+    </header>
+
+    <div class="search">
+      <label for="fallacy-search">Search fallacies</label>
+
+      <input
+        id="fallacy-search"
+        type="search"
+        placeholder="Try “personal attack” or “straw man”..."
+        autocomplete="off"
+      >
+    </div>
+
+    <div id="search-results" class="fallacy-grid">
+      {{ range .Pages.ByTitle }}
+        <article class="fallacy-card">
+          <h2>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+
+          {{ with .Description }}
+            <p>{{ . }}</p>
+          {{ end }}
+       {{ with .Params.categories }}
+         <div class="categories">
+          {{ range . }}
+           <a class="category" href="{{ "/categories/" | relURL }}{{ . | urlize }}/">
+             {{ . }}
+           </a>
+          {{ end }}
+         </div>
+        {{ end }}
+        </article>
+      {{ end }}
+    </div>
+
+    <p id="no-results" class="no-results" hidden>
+      No fallacies found.
+    </p>
+
+  </div>
+</main>
+{{ end }}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}">
+<html lang="{{ site.Language.Locale }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,5 +45,7 @@
       </p>
     </div>
   </footer>
+  {{ $search := resources.Get "js/search.js" }}
+<script src="{{ $search.RelPermalink }}" defer></script>
 </body>
 </html>
