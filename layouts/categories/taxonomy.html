@@ -1,0 +1,45 @@
+{{ define "main" }}
+<main class="category-page">
+  <div class="container">
+
+    <header class="page-header">
+      <p class="eyebrow">Fallacy Category</p>
+
+      <h1>{{ .Title }}</h1>
+
+      {{ with .Params.description }}
+        <p>{{ . }}</p>
+      {{ end }}
+    </header>
+
+    <section class="fallacy-grid">
+      {{ range .Pages.ByTitle }}
+        <article class="fallacy-card">
+
+          <h2>
+            <a href="{{ .RelPermalink }}">
+              {{ .Title }}
+            </a>
+          </h2>
+
+          {{ with .Description }}
+            <p>{{ . }}</p>
+          {{ end }}
+
+          <a class="read-more" href="{{ .RelPermalink }}">
+            Read about this fallacy →
+          </a>
+
+        </article>
+      {{ end }}
+    </section>
+
+    <nav class="category-navigation">
+      <a href="{{ "/categories/" | relURL }}">
+        ← All categories
+      </a>
+    </nav>
+
+  </div>
+</main>
+{{ end }}

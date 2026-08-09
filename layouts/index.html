@@ -1,34 +1,145 @@
 {{ define "main" }}
-<main>
-  <section class="hero">
-    <p class="eyebrow">A reference guide to bad arguments</p>
 
-    <h1>Illogical Fallacy</h1>
+<section class="hero">
+  <div class="container hero-inner">
 
-    <p class="intro">
-      A practical guide to recognizing, understanding, and avoiding
-      logical fallacies.
+    <p class="eyebrow">A Reference Guide to Bad Reasoning</p>
+
+    <h1>
+      Learn to recognize<br>
+      <span>bad arguments.</span>
+    </h1>
+
+    <p class="hero-description">
+      Illogical Fallacy is a practical reference guide to logical
+      fallacies, flawed reasoning, and the ways arguments can go wrong.
     </p>
 
-    <a href="/fallacies/" class="button">Browse Fallacies</a>
-  </section>
+    <div class="hero-actions">
+      <a class="button button-primary" href="{{ "/fallacies/" | relURL }}">
+        Explore Fallacies
+      </a>
 
-  <section class="fallacies">
-    <h2>Fallacies</h2>
+      <a class="button button-secondary" href="{{ "/categories/" | relURL }}">
+        Browse Categories
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="home-section">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">The Library</p>
+        <h2>Common logical fallacies</h2>
+      </div>
+
+      <a href="{{ "/fallacies/" | relURL }}">
+        View all →
+      </a>
+    </div>
 
     <div class="fallacy-grid">
-      {{ range where .Site.RegularPages "Section" "fallacies" }}
+
+      {{ range first 6 (where site.RegularPages "Section" "fallacies").ByTitle }}
+
         <article class="fallacy-card">
+
+          <p class="card-category">
+            {{ with index .Params.categories 0 }}
+              {{ . }}
+            {{ end }}
+          </p>
+
           <h3>
-            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            <a href="{{ .RelPermalink }}">
+              {{ .Title }}
+            </a>
           </h3>
 
-          {{ with .Description }}
-            <p>{{ . }}</p>
-          {{ end }}
+          <p>
+            {{ .Description }}
+          </p>
+
+          <a class="read-more" href="{{ .RelPermalink }}">
+            Learn more →
+          </a>
+
         </article>
+
       {{ end }}
+
     </div>
-  </section>
-</main>
+
+  </div>
+</section>
+
+
+<section class="home-section home-section-alt">
+
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Explore by Type</p>
+        <h2>How arguments go wrong</h2>
+      </div>
+
+      <a href="{{ "/categories/" | relURL }}">
+        All categories →
+      </a>
+    </div>
+
+    <div class="category-grid">
+
+      {{ range site.Taxonomies.categories.ByCount.Reverse }}
+
+        <a class="category-card" href="{{ .Page.RelPermalink }}">
+
+          <h3>{{ .Page.Title }}</h3>
+
+          <span class="category-count">
+            {{ .Count }}
+            {{ if eq .Count 1 }}fallacy{{ else }}fallacies{{ end }}
+          </span>
+
+        </a>
+
+      {{ end }}
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="home-section about-section">
+
+  <div class="container narrow">
+
+    <p class="eyebrow">Why this site exists</p>
+
+    <h2>Arguments matter.</h2>
+
+    <p>
+      Logical fallacies are patterns of reasoning that can make an
+      argument appear stronger than it really is. Learning to recognize
+      them makes it easier to evaluate claims, identify weak reasoning,
+      and have better conversations.
+    </p>
+
+    <p>
+      Each entry in this library explains what a fallacy is, shows an
+      example, and describes how to recognize it in practice.
+    </p>
+
+  </div>
+
+</section>
+
 {{ end }}

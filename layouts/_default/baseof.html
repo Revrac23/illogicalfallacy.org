@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Locale }}">
+<html lang="{{ site.Language.LanguageCode | default "en-US" }}">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>
@@ -12,40 +12,22 @@
     {{ end }}
   </title>
 
-  {{ with site.Params.description }}
+  {{ with .Description }}
     <meta name="description" content="{{ . }}">
   {{ end }}
 
-  {{ $style := resources.Get "css/main.css" }}
-  {{ if $style }}
-    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-  {{ end }}
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="container">
-      <a class="site-title" href="{{ site.Home.RelPermalink }}">
-        Illogical Fallacy
-      </a>
 
-      <nav>
-        <a href="{{ site.Home.RelPermalink }}">Home</a>
-        <a href="/fallacies/">Fallacies</a>
-      </nav>
-    </div>
-  </header>
+  {{ partial "header.html" . }}
 
-  {{ block "main" . }}{{ end }}
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>
-        Illogical Fallacy · A reference guide to logical fallacies
-      </p>
-    </div>
-  </footer>
-  {{ $search := resources.Get "js/search.js" }}
-<script src="{{ $search.RelPermalink }}" defer></script>
+  {{ partial "footer.html" . }}
+
 </body>
 </html>
