@@ -1,0 +1,34 @@
+{{ define "main" }}
+<main>
+  <section class="hero">
+    <p class="eyebrow">A reference guide to bad arguments</p>
+
+    <h1>Illogical Fallacy</h1>
+
+    <p class="intro">
+      A practical guide to recognizing, understanding, and avoiding
+      logical fallacies.
+    </p>
+
+    <a href="/fallacies/" class="button">Browse Fallacies</a>
+  </section>
+
+  <section class="fallacies">
+    <h2>Fallacies</h2>
+
+    <div class="fallacy-grid">
+      {{ range where .Site.RegularPages "Section" "fallacies" }}
+        <article class="fallacy-card">
+          <h3>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+
+          {{ with .Description }}
+            <p>{{ . }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+    </div>
+  </section>
+</main>
+{{ end }}

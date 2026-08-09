@@ -1,0 +1,43 @@
+{{ define "main" }}
+<main class="fallacy-page">
+  <div class="container">
+
+    <header class="fallacy-header">
+      <a class="back-link" href="/fallacies/">← All Fallacies</a>
+
+      <h1>{{ .Title }}</h1>
+
+      {{ with .Description }}
+        <p class="fallacy-description">{{ . }}</p>
+      {{ end }}
+
+      {{ with .Params.categories }}
+        <div class="categories">
+          {{ range . }}
+            <span class="category">{{ . }}</span>
+          {{ end }}
+        </div>
+      {{ end }}
+    </header>
+
+    <article class="fallacy-content">
+      {{ .Content }}
+    </article>
+
+    {{ with .Params.related }}
+      <section class="related-fallacies">
+        <h2>Related Fallacies</h2>
+
+        <ul>
+          {{ range . }}
+            <li>
+              <a href="/fallacies/{{ . | urlize }}/">{{ . }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+  </div>
+</main>
+{{ end }}

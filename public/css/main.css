@@ -1,0 +1,133 @@
+:root {
+  --background: #f7f6f2;
+  --surface: #ffffff;
+  --text: #202124;
+  --muted: #666;
+  --border: #deddd8;
+  --accent: #b33a3a;
+  --max-width: 1100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  width: min(100% - 2rem, var(--max-width));
+  margin-inline: auto;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 64px;
+}
+
+.site-title {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+.hero {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 7rem 1rem 6rem;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: .8rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  margin: 1rem 0;
+}
+
+.intro {
+  color: var(--muted);
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.button {
+  display: inline-block;
+  padding: .75rem 1.25rem;
+  border-radius: .4rem;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.fallacies {
+  width: min(100% - 2rem, var(--max-width));
+  margin: 0 auto 6rem;
+}
+
+.fallacy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.fallacy-card {
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: .5rem;
+}
+
+.fallacy-card h3 {
+  margin-top: 0;
+}
+
+.fallacy-card a {
+  text-decoration: none;
+}
+
+.fallacy-card p {
+  color: var(--muted);
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  color: var(--muted);
+}

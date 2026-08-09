@@ -1,3 +1,12 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://illogicalfallacy.org/'
 locale = 'en-us'
-title = 'My New Hugo Project'
+title = 'Illogical Fallacy'
+enableRobotsTXT = true
+
+[params]
+  description = 'A practical reference guide to logical fallacies.'
+  author = 'Illogical Fallacy'
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
