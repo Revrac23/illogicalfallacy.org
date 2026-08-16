@@ -23,7 +23,8 @@ formal: false
    │   X IS TRUE │
    └─────────────┘
           ✕
-    EVIDENCE MISSING```
+    EVIDENCE MISSING
+```
 
 ## Definition
 
