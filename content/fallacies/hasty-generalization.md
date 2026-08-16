@@ -9,6 +9,22 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+      SAMPLE
+    ┌───┬───┐
+    │ A │ A │
+    └───┴───┘
+          │
+          ▼
+     "ALL A ARE
+        LIKE THIS"
+          │
+          ✕
+    SAMPLE TOO SMALL
+```
+
 ## Definition
 
 A **hasty generalization** draws a broad conclusion from too few observations or from observations that are not representative of the population being discussed.

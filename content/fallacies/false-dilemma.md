@@ -10,6 +10,26 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+        PROBLEM
+           │
+           ▼
+     ┌───────────┐
+     │  TWO      │
+     │  OPTIONS  │
+     └───────────┘
+        ╱     ╲
+       ▼       ▼
+   OPTION A  OPTION B
+       ╲       ╱
+        ╲     ╱
+         ✕
+    OTHER OPTIONS
+      IGNORED
+```
+
 ## Definition
 
 A **false dilemma** presents a situation as having only two possible choices when additional alternatives exist.

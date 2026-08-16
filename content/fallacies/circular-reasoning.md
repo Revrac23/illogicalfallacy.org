@@ -8,6 +8,25 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+     ┌─────────────┐
+     │  ASSUME A   │
+     └──────┬──────┘
+            │
+            ▼
+     ┌─────────────┐
+     │  THEREFORE  │
+     │      A      │
+     └──────┬──────┘
+            │
+            └───────────────┐
+                            │
+                            ▼
+                       ASSUME A
+```
+
 ## Definition
 
 **Circular reasoning** occurs when an argument's conclusion is used, directly or indirectly, to support one of its own premises.

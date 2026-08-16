@@ -12,6 +12,23 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+      CLAIM
+        │
+        ▼
+   "YOU SHOULD
+    NOT DO X"
+        │
+        ▼
+   "YOU DO X!"
+        │
+        ✕
+   ORIGINAL CLAIM
+     UNANSWERED
+```
+
 ## Definition
 
 **Tu quoque** is a form of ad hominem reasoning that responds to criticism by pointing out that the person making the criticism has behaved inconsistently with their own claim.

@@ -15,6 +15,19 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+       ARGUMENT
+           │
+           ▼
+     ┌───────────┐
+     │  PERSON   │ ← ATTACK
+     └───────────┘
+           ✕
+    ARGUMENT IGNORED
+```
+
 ## Definition
 
 An **ad hominem** argument attacks the person making an argument rather than addressing the argument itself.

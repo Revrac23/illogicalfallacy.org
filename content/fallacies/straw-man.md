@@ -11,6 +11,26 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+   ACTUAL ARGUMENT
+          │
+          ▼
+    ┌─────────────┐
+    │   "A"       │
+    └─────────────┘
+          │
+          │ DISTORT
+          ▼
+    ┌─────────────┐
+    │   "B"       │ ← ATTACK
+    └─────────────┘
+          ✕
+    ACTUAL ARGUMENT
+       UNANSWERED
+```
+
 ## Definition
 
 A **straw man** fallacy occurs when someone misrepresents another person's argument, position, or claim and then attacks the distorted version instead of addressing the original argument.

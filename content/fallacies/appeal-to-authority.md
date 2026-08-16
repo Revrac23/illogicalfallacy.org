@@ -10,6 +10,21 @@ related:
 formal: false
 ---
 
+## Visualize 
+
+```       EXPERT
+          │
+          ▼
+    "X IS TRUE"
+          │
+          ▼
+   ┌─────────────┐
+   │   THEREFORE │
+   │   X IS TRUE │
+   └─────────────┘
+          ✕
+    EVIDENCE MISSING```
+
 ## Definition
 
 An **appeal to authority** occurs when someone's status, reputation, or authority is treated as sufficient evidence that a claim is true.

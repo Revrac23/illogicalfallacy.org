@@ -9,6 +9,22 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```      A HAPPENS
+          │
+          ▼
+      B HAPPENS
+          │
+          ▼
+    ┌─────────────┐
+    │ A CAUSED B  │
+    └─────────────┘
+          ✕
+    CAUSATION
+    NOT SHOWN
+```
+
 ## Definition
 
 A **false cause** fallacy occurs when an argument incorrectly identifies one thing as the cause of another.

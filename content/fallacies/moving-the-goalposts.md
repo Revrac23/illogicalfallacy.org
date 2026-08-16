@@ -9,6 +9,31 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+      CLAIM
+        │
+        ▼
+   ┌──────────┐
+   │ CRITERIA │
+   │    ✓     │
+   └──────────┘
+        │
+        ▼
+     EVIDENCE
+     PROVIDED
+        │
+        ▼
+   ┌──────────┐
+   │ CRITERIA │
+   │    ✕     │ ← CHANGED
+   └──────────┘
+        │
+        ▼
+     NEW DEMAND
+```
+
 ## Definition
 
 **Moving the goalposts** occurs when someone changes the requirements for accepting a claim after those requirements have been satisfied.

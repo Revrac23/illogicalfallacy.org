@@ -9,6 +9,26 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+    ORIGINAL QUESTION
+           │
+           ▼
+    ┌──────────────┐
+    │      ?       │
+    └──────────────┘
+           │
+           │
+           └──────────────► 🐟
+                            │
+                            ▼
+                      UNRELATED TOPIC
+                            │
+                            ▼
+                         DISTRACTION
+```
+
 ## Definition
 
 A **red herring** is an irrelevant point introduced into an argument to distract from the original issue.

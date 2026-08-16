@@ -9,6 +9,35 @@ related:
 formal: false
 ---
 
+## Visualize
+
+```
+   SMALL ACTION
+        │
+        ▼
+   ┌─────────┐
+   │ STEP 1  │
+   └─────────┘
+        │
+        ▼
+   ┌─────────┐
+   │ STEP 2  │
+   └─────────┘
+        │
+        ▼
+   ┌─────────┐
+   │ STEP 3  │
+   └─────────┘
+        │
+        ▼
+   ┌─────────────┐
+   │ ABSURD END  │
+   │   RESULT    │
+   └─────────────┘
+        ✕
+   MISSING LINKS
+```
+
 ## Definition
 
 A **slippery slope** argument claims that allowing or causing one event will inevitably lead to a chain of increasingly serious consequences without adequately establishing that the chain will occur.
