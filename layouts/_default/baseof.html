@@ -17,6 +17,10 @@
   {{ end }}
 
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{ with resources.Get "js/search.js" }}
+    {{ $search := . | minify | fingerprint }}
+    <script src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}" defer></script>
+  {{ end }}
 </head>
 
 <body>
