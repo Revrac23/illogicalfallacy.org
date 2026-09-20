@@ -6,6 +6,7 @@
       "description": {{ $page.Description | jsonify }},
       "url": {{ $page.RelPermalink | jsonify }},
       "categories": {{ $page.Params.categories | jsonify }},
+      "aliases": {{ $page.Params.alsoKnownAs | default (slice) | jsonify }},
       "content": {{ $page.Plain | jsonify }}
     }
   {{ end }}

@@ -1,5 +1,6 @@
 {{ define "main" }}
 
+<main id="main-content" tabindex="-1">
 <section class="hero">
   <div class="container hero-inner">
 
@@ -45,7 +46,9 @@
 
     <div class="fallacy-grid">
 
-      {{ range first 6 (where site.RegularPages "Section" "fallacies").ByTitle }}
+      {{ $featured := slice "ad-hominem" "straw-man" "false-dilemma" "bandwagon" "hasty-generalization" "slippery-slope" }}
+      {{ range $featured }}
+        {{ with site.GetPage (printf "/fallacies/%s" .) }}
 
         <article class="fallacy-card">
 
@@ -71,10 +74,25 @@
 
         </article>
 
+        {{ end }}
       {{ end }}
 
     </div>
 
+  </div>
+</section>
+
+<section class="home-section example-section">
+  <div class="container narrow">
+    <p class="eyebrow">Try One</p>
+    <h2>Can you spot the problem?</h2>
+    <blockquote>
+      “We shouldn’t listen to Maya’s proposal. She’s always late to meetings.”
+    </blockquote>
+    <p>
+      The response attacks Maya instead of evaluating her proposal. That pattern is an
+      <a href="{{ "/fallacies/ad-hominem/" | relURL }}">ad hominem fallacy</a>.
+    </p>
   </div>
 </section>
 
@@ -101,6 +119,10 @@
         <a class="category-card" href="{{ .Page.RelPermalink }}">
 
           <h3>{{ .Page.Title }}</h3>
+
+          {{ with .Page.Description }}
+            <p>{{ . }}</p>
+          {{ end }}
 
           <span class="category-count">
             {{ .Count }}
@@ -141,5 +163,7 @@
   </div>
 
 </section>
+
+</main>
 
 {{ end }}

@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="category-index">
+<main id="main-content" class="category-index" tabindex="-1">
   <div class="container">
 
     <header class="page-header">
@@ -15,7 +15,7 @@
         <a class="category-card" href="{{ .RelPermalink }}">
           <h2>{{ .Title }}</h2>
 
-          {{ with .Params.description }}
+          {{ with .Description }}
             <p>{{ . }}</p>
           {{ end }}
 
