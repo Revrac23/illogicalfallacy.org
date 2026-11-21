@@ -12,7 +12,8 @@ formal: false
 
 ## Visualize 
 
-```       EXPERT
+```
+       EXPERT
           │
           ▼
     "X IS TRUE"
