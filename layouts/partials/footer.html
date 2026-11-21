@@ -6,6 +6,10 @@
       flawed reasoning, and common errors in argumentation.
     </p>
 
+    {{ with site.GetPage "/about" }}
+      <p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+    {{ end }}
+
     <p class="copyright">
       © {{ now.Year }} Illogical Fallacy
     </p>

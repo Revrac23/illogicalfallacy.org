@@ -1,30 +1,31 @@
 ---
 title: "Burden of Proof"
-description: "Failing to recognize that the person making a claim is generally responsible for providing evidence supporting it."
+description: "The responsibility to provide adequate reasons or evidence for a claim."
 categories:
   - "Presumption"
 related:
   - "shifting-the-burden-of-proof"
   - "appeal-to-ignorance"
 formal: false
+reasoningType: "Reasoning principle"
 ---
 
 ## Definition
 
-The **burden of proof** principle holds that someone making a claim is generally responsible for providing sufficient evidence to support that claim.
+The **burden of proof** is the responsibility to support a claim with adequate reasons or evidence. In an ordinary discussion, someone who advances a disputed claim should be prepared to defend it when asked. What counts as adequate support depends on the claim and the context. [Stanford Encyclopedia of Philosophy, Fallacies, §3.6](https://plato.stanford.edu/entries/fallacies/#DiaAppFal)
 
-## Example
+## Legitimate Example
 
-> "I claim that an invisible dragon lives in my garage. You can't prove that it doesn't, so my claim stands."
+> Our supplier says the last three orders arrived on time. Before renewing the contract, the purchasing team asks for the delivery records, and the supplier shares signed receipts with timestamps.
 
-The person making the extraordinary claim cannot establish it merely by demanding that others disprove it.
+The supplier supports its claim with records the team can check against the agreed delivery dates.
 
-## Why It's Fallacious
+## How the Principle Is Misused
 
-A claim does not become established simply because nobody has disproven it.
+> Our supplier says the last three orders arrived on time. When asked for records, the supplier tells the purchasing team to assume the orders were on time unless the team can prove otherwise.
 
-## How to Recognize It
+The burden of proof describes who owes support. [Shifting the Burden of Proof](/fallacies/shifting-the-burden-of-proof/) is the move the supplier makes by asking the team to disprove an unsupported claim.
 
-Ask:
+## How to Apply It
 
-> "Who is making the claim, and what evidence have they provided for it?"
+Identify the specific claim, who is making it, and what evidence would support it. If the team makes a further claim that a delivery was late, it should be ready to support that claim too.
