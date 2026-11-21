@@ -16,6 +16,14 @@
       fallacies, flawed reasoning, and the ways arguments can go wrong.
     </p>
 
+    <form class="hero-search" role="search" action="{{ "/fallacies/" | relURL }}" method="get" hidden>
+      <label for="home-query">Search fallacies</label>
+      <div class="hero-search-controls">
+        <input id="home-query" type="search" name="q" required>
+        <button class="button button-primary" type="submit">Search</button>
+      </div>
+    </form>
+
     <div class="hero-actions">
       <a class="button button-primary" href="{{ "/fallacies/" | relURL }}">
         Explore Fallacies
@@ -86,13 +94,47 @@
   <div class="container narrow">
     <p class="eyebrow">Try One</p>
     <h2>Can you spot the problem?</h2>
-    <blockquote>
-      “We shouldn’t listen to Maya’s proposal. She’s always late to meetings.”
-    </blockquote>
-    <p>
-      The response attacks Maya instead of evaluating her proposal. That pattern is an
-      <a href="{{ "/fallacies/ad-hominem/" | relURL }}">ad hominem fallacy</a>.
-    </p>
+    <div class="practice-examples">
+      <div class="practice-example">
+        <blockquote>
+          “We shouldn’t listen to Maya’s proposal. She’s always late to meetings.”
+        </blockquote>
+        <details>
+          <summary>Answer for Maya’s proposal</summary>
+          <p>
+            Maya’s punctuality tells us nothing about the merits of her proposal.
+            Dismissing an argument based on an irrelevant criticism of the person
+            making it is an <a href="{{ "/fallacies/ad-hominem/" | relURL }}">ad hominem fallacy</a>.
+          </p>
+        </details>
+      </div>
+      <div class="practice-example">
+        <blockquote>
+          “Either we close the library on weekends or we have to double its budget.”
+        </blockquote>
+        <details>
+          <summary>Answer for the library budget</summary>
+          <p>
+            The argument presents two options as if they were the only ones. The
+            library could also shorten its weekend hours. Overlooking alternatives
+            this way creates a <a href="{{ "/fallacies/false-dilemma/" | relURL }}">false dilemma</a>.
+          </p>
+        </details>
+      </div>
+      <div class="practice-example">
+        <blockquote>
+          “The two buses I took this week were late. Buses on this route are always late.”
+        </blockquote>
+        <details>
+          <summary>Answer for the late buses</summary>
+          <p>
+            Two rides give us too little evidence to judge how often buses on the
+            route arrive late. Drawing a broad conclusion from too few observations
+            is a <a href="{{ "/fallacies/hasty-generalization/" | relURL }}">hasty generalization</a>.
+          </p>
+        </details>
+      </div>
+    </div>
   </div>
 </section>
 

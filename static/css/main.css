@@ -145,7 +145,43 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: 20px;
+}
+
+.hero-search {
+  max-width: 460px;
+  margin-top: 28px;
+}
+
+.hero-search[hidden] {
+  display: none;
+}
+
+.hero-search label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.hero-search-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.hero-search input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--text);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.hero-search button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
 }
 
 .button {
@@ -254,6 +290,18 @@ a {
   text-decoration: none;
 }
 
+
+.practice-example + .practice-example {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.practice-example summary {
+  padding-block: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
 
 /* Categories */
 
