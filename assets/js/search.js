@@ -1,123 +1,168 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const input = document.querySelector("#fallacy-search");
-  const results = document.querySelector("#search-results");
-  const noResults = document.querySelector("#no-results");
-  const status = document.querySelector("#results-status");
-  const filterButtons = [...document.querySelectorAll("[data-category]")];
-
-  if (!input || !results) {
+document.addEventListener("DOMContentLoaded", () => {
+  const library = document.querySelector(".fallacy-index[data-search-index]");
+  if (!library) {
     return;
   }
 
-  let fallacies = [];
-  let activeCategory = "all";
+  const input = library.querySelector("#fallacy-search");
+  const results = library.querySelector("#search-results");
+  const noResults = library.querySelector("#no-results");
+  const status = library.querySelector("#results-status");
+  const reset = library.querySelector("#reset-filters");
+  const filters = [...library.querySelectorAll(".filter-list [data-category]")];
+  let activeCategory = "";
+  let indexStatus = "Loading full-text search…";
 
-  try {
-    const response = await fetch("/fallacies/index.json");
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-
-    fallacies = await response.json();
-  } catch (error) {
-    console.error("Unable to load fallacy search index:", error);
-    return;
+  function normalize(text) {
+    return text.normalize("NFKC").toLowerCase()
+      .replace(/['’‘ʼ]/g, "")
+      .replace(/[^\p{L}\p{N}]+/gu, " ")
+      .trim();
   }
 
-  function createCategoryLink(category) {
-    const link = document.createElement("a");
-    link.className = "category";
-    link.href = `/categories/${category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}/`;
-    link.textContent = category;
-    return link;
-  }
+  const cards = [...results.children].map((element) => {
+    const link = element.querySelector("h2 a");
+    const categoryLinks = [...element.querySelectorAll(".categories [data-category]")];
+    const title = normalize(link.textContent);
+    const aliases = JSON.parse(element.dataset.aliases).map(normalize);
+    return {
+      element,
+      url: link.href,
+      title,
+      aliases,
+      categories: categoryLinks.map((link) => link.dataset.category),
+      basicText: normalize([
+        link.textContent,
+        ...aliases,
+        element.querySelector("p")?.textContent,
+        ...categoryLinks.map((link) => link.textContent)
+      ].join(" ")),
+      fullText: ""
+    };
+  });
 
-  function render(items) {
-    results.innerHTML = "";
-
-    items.forEach((fallacy) => {
-      const article = document.createElement("article");
-      article.className = "fallacy-card";
-
-      const title = document.createElement("h2");
-      const link = document.createElement("a");
-
-      link.href = fallacy.url;
-      link.textContent = fallacy.title;
-
-      title.appendChild(link);
-      article.appendChild(title);
-
-      if (fallacy.description) {
-        const description = document.createElement("p");
-        description.textContent = fallacy.description;
-        article.appendChild(description);
-      }
-
-      if (fallacy.categories?.length) {
-        const categories = document.createElement("div");
-        categories.className = "categories";
-
-        fallacy.categories.forEach((category) => {
-          categories.appendChild(createCategoryLink(category));
-        });
-
-        article.appendChild(categories);
-      }
-
-      results.appendChild(article);
-    });
-
-    noResults.hidden = items.length !== 0;
-    const noun = items.length === 1 ? "fallacy" : "fallacies";
-    status.textContent = `Showing ${items.length} ${noun}`;
+  function score(card, query, terms, compactQuery) {
+    if (!query) return 0;
+    if (card.title === query) return 5;
+    if (card.aliases.includes(query)) return 4;
+    if (card.title.replaceAll(" ", "") === compactQuery) return 3;
+    if (card.aliases.some((alias) => alias.replaceAll(" ", "") === compactQuery)) return 2;
+    if (card.title.includes(query)) return 1;
+    return terms.every((term) => card.basicText.includes(term) || card.fullText.includes(term)) ? 0 : -1;
   }
 
   function updateResults() {
-    const query = input.value.trim().toLowerCase();
-    const terms = query.split(/\s+/);
+    const query = normalize(input.value);
+    const terms = query.split(" ");
+    const compactQuery = query.replaceAll(" ", "");
+    const focused = document.activeElement;
+    const matches = [];
+    cards.forEach((card) => {
+      const rank = activeCategory && !card.categories.includes(activeCategory)
+        ? -1 : score(card, query, terms, compactQuery);
+      if (rank < 0 && card.element.contains(focused)) {
+        input.focus({ preventScroll: true });
+      }
+      card.element.hidden = rank < 0;
+      if (rank >= 0) {
+        matches.push({ element: card.element, rank });
+      }
+    });
 
-    const filtered = fallacies
-      .filter((fallacy) => activeCategory === "all" || fallacy.categories?.includes(activeCategory))
-      .map((fallacy) => {
-      const searchableText = [
-        fallacy.title,
-        ...(fallacy.aliases || []),
-        fallacy.description,
-        ...(fallacy.categories || []),
-        fallacy.content
-      ]
-        .join(" ")
-        .toLowerCase();
+    // Stable sorting preserves the rendered alphabetical order for ties.
+    matches.sort((a, b) => b.rank - a.rank);
+    let next = results.firstElementChild;
+    for (const { element } of matches) {
+      if (element === next) {
+        next = next.nextElementSibling;
+      } else {
+        results.insertBefore(element, next);
+      }
+    }
+    if (focused !== document.activeElement && results.contains(focused) && !focused.closest("[hidden]")) {
+      focused.focus({ preventScroll: true });
+    }
 
-        if (!query || !terms.every((term) => searchableText.includes(term))) {
-          return query ? null : { fallacy, score: 0 };
-        }
+    noResults.hidden = matches.length !== 0;
+    const noun = matches.length === 1 ? "fallacy" : "fallacies";
+    status.textContent = [`Showing ${matches.length} ${noun}.`, indexStatus].filter(Boolean).join(" ");
 
-        const title = fallacy.title.toLowerCase();
-        const aliases = (fallacy.aliases || []).map((alias) => alias.toLowerCase());
-        const score = title === query ? 3 : aliases.includes(query) ? 2 : title.includes(query) ? 1 : 0;
-        return { fallacy, score };
-      })
-      .filter(Boolean)
-      .sort((a, b) => b.score - a.score || a.fallacy.title.localeCompare(b.fallacy.title))
-      .map(({ fallacy }) => fallacy);
-
-    render(filtered);
+    for (const filter of filters) {
+      const active = filter.dataset.category === activeCategory;
+      filter.classList.toggle("is-active", active);
+      if (active) {
+        filter.setAttribute("aria-current", "true");
+      } else {
+        filter.removeAttribute("aria-current");
+      }
+    }
   }
 
-  input.addEventListener("input", updateResults);
+  function readLocation() {
+    const params = new URLSearchParams(location.search);
+    input.value = params.get("q") || "";
+    const category = params.get("category");
+    activeCategory = filters.some((filter) => filter.dataset.category === category) ? category : "";
+    updateResults();
+  }
 
-  filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      activeCategory = button.dataset.category;
-      filterButtons.forEach((item) => {
-        const isActive = item === button;
-        item.classList.toggle("is-active", isActive);
-        item.setAttribute("aria-pressed", String(isActive));
-      });
-      updateResults();
+  function updateLocation(method) {
+    const url = new URL(location.href);
+    const query = input.value.trim();
+    if (query) url.searchParams.set("q", query);
+    else url.searchParams.delete("q");
+    if (activeCategory) url.searchParams.set("category", activeCategory);
+    else url.searchParams.delete("category");
+
+    if (url.href !== location.href) {
+      history[method](null, "", url);
+    }
+    updateResults();
+  }
+
+  input.addEventListener("input", () => updateLocation("replaceState"));
+  for (const filter of filters) {
+    filter.addEventListener("click", (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      event.preventDefault();
+      activeCategory = filter.dataset.category;
+      updateLocation("pushState");
     });
+  }
+
+  reset.addEventListener("click", () => {
+    input.value = "";
+    activeCategory = "";
+    updateLocation("pushState");
   });
+  window.addEventListener("popstate", readLocation);
+  input.closest(".search").hidden = false;
+  readLocation();
+
+  async function loadIndex() {
+    try {
+      const response = await fetch(library.dataset.searchIndex);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const index = await response.json();
+      const contentByUrl = new Map(index.map(({ url, content }) => [
+        new URL(url, response.url).href, normalize(content)
+      ]));
+      if (!cards.every((card) => contentByUrl.has(card.url))) {
+        throw new Error("Incomplete fallacy search index");
+      }
+      for (const card of cards) {
+        card.fullText = contentByUrl.get(card.url);
+      }
+      indexStatus = "";
+    } catch {
+      indexStatus = "Full-text search is unavailable. Basic search is still available.";
+    }
+    updateResults();
+  }
+
+  loadIndex();
 });
