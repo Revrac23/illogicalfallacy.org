@@ -1,0 +1,19 @@
+{{ define "main" }}
+<main id="main-content" tabindex="-1">
+  <div class="container">
+    <header class="page-header">
+      <p class="eyebrow">Illogical Fallacy</p>
+      <h1>404 · Page not found</h1>
+      <p>The page you were looking for may have moved or been removed.</p>
+    </header>
+
+    <nav class="category-navigation" aria-label="Recovery links">
+      <ul>
+        <li><a href="{{ "/" | relURL }}">Return to the homepage</a></li>
+        <li><a href="{{ "/fallacies/" | relURL }}">Browse all fallacies</a></li>
+        <li><a href="{{ "/categories/" | relURL }}">Browse categories</a></li>
+      </ul>
+    </nav>
+  </div>
+</main>
+{{ end }}

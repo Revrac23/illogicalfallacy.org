@@ -11,7 +11,8 @@ formal: false
 
 ## Visualize
 
-```      A HAPPENS
+```
+      A HAPPENS
           │
           ▼
       B HAPPENS

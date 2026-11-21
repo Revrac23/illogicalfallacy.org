@@ -37,7 +37,9 @@
 
         <div>
           <strong>Type:</strong>
-          {{ if .Params.formal }}
+          {{ if .Params.reasoningType }}
+            {{ .Params.reasoningType }}
+          {{ else if .Params.formal }}
             Formal fallacy
           {{ else }}
             Informal fallacy

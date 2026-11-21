@@ -1,44 +1,30 @@
 {{ define "main" }}
-<main id="main-content" class="category-page" tabindex="-1">
+<main id="main-content" class="category-index" tabindex="-1">
   <div class="container">
 
     <header class="page-header">
-      <p class="eyebrow">Fallacy Category</p>
-
-      <h1>{{ .Title }}</h1>
-
-      {{ with .Description }}
-        <p>{{ . }}</p>
-      {{ end }}
+      <p class="eyebrow">Browse the Library</p>
+      <h1>Fallacy Categories</h1>
+      <p>
+        Explore logical fallacies by the type of reasoning they involve.
+      </p>
     </header>
 
-    <section class="fallacy-grid">
+    <div class="category-grid">
       {{ range .Pages.ByTitle }}
-        <article class="fallacy-card">
-
-          <h2>
-            <a href="{{ .RelPermalink }}">
-              {{ .Title }}
-            </a>
-          </h2>
+        <a class="category-card" href="{{ .RelPermalink }}">
+          <h2>{{ .Title }}</h2>
 
           {{ with .Description }}
             <p>{{ . }}</p>
           {{ end }}
 
-          <a class="read-more" href="{{ .RelPermalink }}">
-            Read about this fallacy →
-          </a>
-
-        </article>
+          <span class="category-count">
+            {{ len .Pages }} {{ if eq (len .Pages) 1 }}fallacy{{ else }}fallacies{{ end }}
+          </span>
+        </a>
       {{ end }}
-    </section>
-
-    <nav class="category-navigation">
-      <a href="{{ "/categories/" | relURL }}">
-        ← All categories
-      </a>
-    </nav>
+    </div>
 
   </div>
 </main>

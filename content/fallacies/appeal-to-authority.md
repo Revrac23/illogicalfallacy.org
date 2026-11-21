@@ -1,6 +1,6 @@
 ---
 title: "Appeal to Authority"
-description: "Treating an authority's claim as sufficient evidence that the claim must be true."
+description: "Giving someone’s position, reputation, or credentials more weight than they warrant for the claim."
 categories:
   - "Relevance"
 alsoKnownAs:
@@ -12,7 +12,8 @@ formal: false
 
 ## Visualize 
 
-```       EXPERT
+```
+       EXPERT
           │
           ▼
     "X IS TRUE"
@@ -28,22 +29,24 @@ formal: false
 
 ## Definition
 
-An **appeal to authority** occurs when someone's status, reputation, or authority is treated as sufficient evidence that a claim is true.
+An **appeal to authority** is fallacious when someone's position, reputation, or credentials are given more weight than they warrant for the claim at hand.
 
-## Example
+## Fallacious Example
 
-> "A famous actor says this supplement works, so it must be effective."
+> The library director says the new roof can support a garden, so we can go ahead with the project.
 
-The actor's fame does not establish expertise in medicine or nutrition.
+The director's role gives them responsibility for the library. The claim about how much weight the roof can bear requires relevant technical knowledge and evidence.
 
-## Why It's Fallacious
+## Legitimate Example
 
-Expert testimony can be useful evidence, but an authority's opinion is not automatically proof. The relevance of the authority's expertise, the quality of the evidence, and whether there is legitimate expert consensus all matter.
+> A structural engineer inspected the same roof and checked the plans. Her report says it can support the proposed planters at their specified weight, so the planning team can use that finding when reviewing the proposal.
+
+The engineer has relevant qualifications, checked the actual roof, and limited her conclusion to the proposed load.
+
+## How It Relates to Appeal to Expertise
+
+The labels overlap. This page focuses on the weight given to status or reputation. [Appeal to Expertise](/fallacies/appeal-to-expertise/) looks more closely at how even relevant expert judgment can be overstated. The *Stanford Encyclopedia of Philosophy* discusses appeals to authority and expertise together under *ad verecundiam*. [Fallacies, §1](https://plato.stanford.edu/entries/fallacies/#CorFal)
 
 ## How to Recognize It
 
-Ask:
-
-> "Is this person's authority actually relevant to the claim?"
-
-A claim should not be accepted solely because an impressive or famous person made it.
+Ask what puts the source in a position to know, what they based their judgment on, and how closely their conclusion matches the claim being made.

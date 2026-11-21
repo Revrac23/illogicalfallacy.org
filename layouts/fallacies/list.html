@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main id="main-content" class="fallacy-index" tabindex="-1">
+<main id="main-content" class="fallacy-index" data-search-index="{{ with .OutputFormats.Get "SearchIndex" }}{{ .RelPermalink }}{{ end }}" tabindex="-1">
   <div class="container">
 
     <header class="page-header">
@@ -11,23 +11,24 @@
     </header>
 
     <div class="library-tools">
-      <div class="search">
-      <label for="fallacy-search">Search fallacies</label>
+      <div class="search" hidden>
+        <label for="fallacy-search">Search fallacies</label>
 
-      <input
-        id="fallacy-search"
-        type="search"
-        placeholder="Try “personal attack” or “straw man”..."
-        autocomplete="off"
-      >
+        <input
+          id="fallacy-search"
+          type="search"
+          placeholder="Try “personal attack” or “straw man”..."
+          autocomplete="off"
+        >
+        <button id="reset-filters" class="filter-button" type="button">Reset filters</button>
       </div>
 
       <fieldset class="category-filters">
         <legend>Filter by category</legend>
         <div class="filter-list">
-          <button class="filter-button is-active" type="button" data-category="all" aria-pressed="true">All categories</button>
+          <a class="filter-button is-active" href="{{ .RelPermalink }}" data-category="" aria-current="true">All categories</a>
           {{ range site.Taxonomies.categories.Alphabetical }}
-            <button class="filter-button" type="button" data-category="{{ .Page.Title }}" aria-pressed="false">{{ .Page.Title }}</button>
+            <a class="filter-button" href="{{ .Page.RelPermalink }}" data-category="{{ .Page.Data.Term | urlize }}">{{ .Page.Title }}</a>
           {{ end }}
         </div>
       </fieldset>
@@ -39,7 +40,7 @@
 
     <div id="search-results" class="fallacy-grid">
       {{ range .Pages.ByTitle }}
-        <article class="fallacy-card">
+        <article class="fallacy-card" data-aliases="{{ .Params.alsoKnownAs | default (slice) | jsonify }}">
           <h2>
             <a href="{{ .RelPermalink }}">{{ .Title }}</a>
           </h2>
@@ -47,15 +48,13 @@
           {{ with .Description }}
             <p>{{ . }}</p>
           {{ end }}
-       {{ with .Params.categories }}
-         <div class="categories">
-          {{ range . }}
-           <a class="category" href="{{ "/categories/" | relURL }}{{ . | urlize }}/">
-             {{ . }}
-           </a>
+          {{ with .GetTerms "categories" }}
+            <div class="categories">
+              {{ range . }}
+                <a class="category" href="{{ .RelPermalink }}" data-category="{{ .Data.Term | urlize }}">{{ .Title }}</a>
+              {{ end }}
+            </div>
           {{ end }}
-         </div>
-        {{ end }}
         </article>
       {{ end }}
     </div>
