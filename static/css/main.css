@@ -325,6 +325,10 @@ a {
   margin-bottom: 1.5rem;
 }
 
+.search .filter-button {
+  margin-top: 0.65rem;
+}
+
 .search label {
   display: block;
   margin-bottom: 0.5rem;
@@ -379,6 +383,7 @@ a {
   font: inherit;
   font-size: 0.9rem;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .filter-button:hover,
